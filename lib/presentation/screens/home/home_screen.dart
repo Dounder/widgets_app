@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
+import 'package:widgets_app/presentation/widgets/side_menu.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String name = 'home_screen';
@@ -9,9 +10,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(title: const Text('Flutter + Matrial 3')),
       body: const _HomeView(),
+      drawer: SideMenu(scaffoldKey: scaffoldKey),
     );
   }
 }
@@ -52,8 +57,8 @@ class _CustomListTile extends StatelessWidget {
         //   ),
         // );
         // Navigator.pushNamed(context, item.link);
-        context.push(item.link);
         // context.pushNamed(CardsScreen.name);
+        context.push(item.link);
       },
     );
   }
